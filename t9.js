@@ -17,13 +17,11 @@ function t9(input = '') {
     const parsedKeys = input.split('').map(key => { return t9Map[parseInt(key, 10)] });
 
     return parsedKeys.reduce((words, key) => {
-        return words.reduce((newWords, word) => {
-            key.map(value => {
-                newWords.push(word + value);
-            });
-
-            return newWords;
-        }, [])
+        return words.reduce((prevWords, word) => {
+            return prevWords.concat(key.map(value => {
+                return word + value;
+            }));
+        }, []);
     });
 }
 
